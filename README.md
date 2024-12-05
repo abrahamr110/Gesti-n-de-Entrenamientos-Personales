@@ -1,4 +1,4 @@
-# Gestion de Entrenamientos Personales 
+# FitTrack
 Este proyecto es una aplicación de backend desarrollada en Spring Boot, diseñada para gestionar planes de entrenamiento personalizados. Está dirigida a entrenadores personales y clientes que buscan organizar y realizar un seguimiento de sus sesiones de entrenamiento de manera eficiente.  
 
 ## Características principales 
