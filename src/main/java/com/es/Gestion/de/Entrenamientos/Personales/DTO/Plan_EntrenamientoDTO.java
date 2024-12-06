@@ -2,13 +2,13 @@ package com.es.Gestion.de.Entrenamientos.Personales.DTO;
 
 import java.util.Date;
 
-public class Plan_Entrenamiento {
+public class Plan_EntrenamientoDTO {
     private String nombre;
     private String descripcion;
     private Date fecha_inicio;
     private Date fecha_final;
 
-    public Plan_Entrenamiento(String nombre, String descripcion, Date fecha_inicio, Date fecha_final) {
+    public Plan_EntrenamientoDTO(String nombre, String descripcion, Date fecha_inicio, Date fecha_final) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;

@@ -6,14 +6,14 @@ import java.util.Date;
 
 @Entity
 @Table(name = "sesiones_entrenamiento")
-public class Sesiones_Entrenamiento {
+public class Sesion_Entrenamiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "id_planEntrenamiento", nullable = false)
-    private Planes_Entrenamiento id_planEntrenamiento;
+    private Plan_Entrenamiento id_planEntrenamiento;
 
     @Column(name = "fecha", nullable = false)
     private Date fecha;
@@ -24,9 +24,9 @@ public class Sesiones_Entrenamiento {
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
-    public Sesiones_Entrenamiento() {}
+    public Sesion_Entrenamiento() {}
 
-    public Sesiones_Entrenamiento(Long id, Date fecha_sesion, int duracion, String descripcion) {
+    public Sesion_Entrenamiento(Long id, Date fecha_sesion, int duracion, String descripcion) {
         this.id = id;
         this.fecha = fecha_sesion;
         this.duracion = duracion;

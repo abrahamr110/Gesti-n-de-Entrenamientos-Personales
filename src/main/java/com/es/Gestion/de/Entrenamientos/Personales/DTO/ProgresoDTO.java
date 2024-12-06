@@ -4,7 +4,7 @@ public class ProgresoDTO {
     private int progreso;
     private int sesion;
     private int entrenamiento;
-    
+
     public int getProgreso() {
         return progreso;
     }
@@ -20,5 +20,5 @@ public class ProgresoDTO {
     public int getEntrenamiento() {
         return entrenamiento;
     }
-    public void setEntrenamiento(int entrenamiento) {
+    public void setEntrenamiento(int entrenamiento) {}
 }

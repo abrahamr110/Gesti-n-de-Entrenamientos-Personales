@@ -11,7 +11,7 @@ public class Progreso {
 
     @ManyToOne
     @JoinColumn(name = "id_sesion", nullable = false)
-    private Sesiones_Entrenamiento id_sesion;
+    private Sesion_Entrenamiento id_sesion;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
