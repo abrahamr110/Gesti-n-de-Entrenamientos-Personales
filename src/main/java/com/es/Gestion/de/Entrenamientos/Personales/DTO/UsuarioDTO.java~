@@ -1,0 +1,11 @@
+package com.es.Gestion.de.Entrenamientos.Personales.DTO;
+
+import java.util.Date;
+
+public class UsuarioDTO {
+    private String nombre;
+    private String correo;
+    private String contrasena;
+    private String rol;
+    private Date fecha_creacion;
+}

@@ -11,8 +11,9 @@ public class Sesiones_Entrenamiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "id_planEntrenamiento", nullable = false)
-    private Long id_planEntrenamiento;
+    @ManyToOne
+    @JoinColumn(name = "id_planEntrenamiento", nullable = false)
+    private Planes_Entrenamiento id_planEntrenamiento;
 
     @Column(name = "fecha", nullable = false)
     private Date fecha;
@@ -25,9 +26,8 @@ public class Sesiones_Entrenamiento {
 
     public Sesiones_Entrenamiento() {}
 
-    public Sesiones_Entrenamiento(Long id, Long id_planEntrenamiento, Date fecha_sesion, int duracion, String descripcion) {
+    public Sesiones_Entrenamiento(Long id, Date fecha_sesion, int duracion, String descripcion) {
         this.id = id;
-        this.id_planEntrenamiento = id_planEntrenamiento;
         this.fecha = fecha_sesion;
         this.duracion = duracion;
         this.descripcion = descripcion;
@@ -39,14 +39,6 @@ public class Sesiones_Entrenamiento {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getId_planEntrenamiento() {
-        return id_planEntrenamiento;
-    }
-
-    public void setId_planEntrenamiento(Long id_planEntrenamiento) {
-        this.id_planEntrenamiento = id_planEntrenamiento;
     }
 
     public Date getFecha_sesion() {

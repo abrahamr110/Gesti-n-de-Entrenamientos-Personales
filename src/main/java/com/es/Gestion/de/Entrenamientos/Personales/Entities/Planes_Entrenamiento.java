@@ -2,6 +2,8 @@ package com.es.Gestion.de.Entrenamientos.Personales.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "planes_entrenamiento")
 public class Planes_Entrenamiento {
@@ -24,14 +26,14 @@ public class Planes_Entrenamiento {
     private String descripcion;
 
     @Column(name = "fecha_inicio", nullable = false)
-    private String fecha_inicio;
+    private Date fecha_inicio;
 
     @Column(name = "fecha_final", nullable = true)
-    private String fecha_final;
+    private Date fecha_final;
 
     public Planes_Entrenamiento() {}
 
-    public Planes_Entrenamiento(Long id, Usuario id_entrenador, Usuario id_cliente, String nombre, String descripcion, String fecha_inicio, String fecha_final) {
+    public Planes_Entrenamiento(Long id, Usuario id_entrenador, Usuario id_cliente, String nombre, String descripcion, Date fecha_inicio, Date fecha_final) {
         this.id = id;
         this.id_entrenador = id_entrenador;
         this.id_cliente = id_cliente;
@@ -57,19 +59,19 @@ public class Planes_Entrenamiento {
         this.nombre = nombre;
     }
 
-    public String getFecha_inicio() {
+    public Date getFecha_inicio() {
         return fecha_inicio;
     }
 
-    public void setFecha_inicio(String fecha_inicio) {
+    public void setFecha_inicio(Date fecha_inicio) {
         this.fecha_inicio = fecha_inicio;
     }
 
-    public String getFecha_final() {
+    public Date getFecha_final() {
         return fecha_final;
     }
 
-    public void setFecha_final(String fecha_final) {
+    public void setFecha_final(Date fecha_final) {
         this.fecha_final = fecha_final;
     }
 

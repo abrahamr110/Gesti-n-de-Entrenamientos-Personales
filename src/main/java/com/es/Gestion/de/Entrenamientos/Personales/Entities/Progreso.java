@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "progresos")
-public class Progresos {
+public class Progreso {
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
@@ -29,9 +29,9 @@ public class Progresos {
     @Column(name = "observaciones", nullable = true)
     private String observaciones;
 
-    public Progresos() {}
+    public Progreso() {}
 
-    public Progresos(Long id, Double peso, int repiticiones, Double calorias, String observaciones) {
+    public Progreso(Long id, Double peso, int repiticiones, Double calorias, String observaciones) {
         this.id = id;
         this.peso = peso;
         this.repiticiones = repiticiones;
