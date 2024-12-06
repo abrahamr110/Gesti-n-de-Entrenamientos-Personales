@@ -15,7 +15,7 @@ public class Progresos {
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
-    private Usuarios id_cliente;
+    private Usuario id_cliente;
 
     @Column(name = "peso", nullable = true)
     private Double peso;
@@ -31,10 +31,8 @@ public class Progresos {
 
     public Progresos() {}
 
-    public Progresos(Long id, Long id_sesion, Long id_cliente, Double peso, int repiticiones, Double calorias, String observaciones) {
+    public Progresos(Long id, Double peso, int repiticiones, Double calorias, String observaciones) {
         this.id = id;
-        this.id_sesion = id_sesion;
-        this.id_cliente = id_cliente;
         this.peso = peso;
         this.repiticiones = repiticiones;
         this.calorias = calorias;
@@ -47,22 +45,6 @@ public class Progresos {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getId_sesion() {
-        return id_sesion;
-    }
-
-    public void setId_sesion(Long id_sesion) {
-        this.id_sesion = id_sesion;
-    }
-
-    public Long getId_cliente() {
-        return id_cliente;
-    }
-
-    public void setId_cliente(Long id_cliente) {
-        this.id_cliente = id_cliente;
     }
 
     public Double getPeso() {

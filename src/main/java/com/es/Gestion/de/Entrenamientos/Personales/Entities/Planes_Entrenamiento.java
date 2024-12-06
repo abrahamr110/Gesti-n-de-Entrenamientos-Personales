@@ -11,11 +11,11 @@ public class Planes_Entrenamiento {
 
     @ManyToOne
     @JoinColumn(name = "id_entrenador", nullable = true)
-    private Long id_entrenador;
+    private Usuario id_entrenador;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = true)
-    private Long id_cliente;
+    private Usuario id_cliente;
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
@@ -31,7 +31,7 @@ public class Planes_Entrenamiento {
 
     public Planes_Entrenamiento() {}
 
-    public Planes_Entrenamiento(Long id, Long id_entrenador, Long id_cliente, String nombre, String descripcion, String fecha_inicio, String fecha_final) {
+    public Planes_Entrenamiento(Long id, Usuario id_entrenador, Usuario id_cliente, String nombre, String descripcion, String fecha_inicio, String fecha_final) {
         this.id = id;
         this.id_entrenador = id_entrenador;
         this.id_cliente = id_cliente;
@@ -47,22 +47,6 @@ public class Planes_Entrenamiento {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getId_entrenador() {
-        return id_entrenador;
-    }
-
-    public void setId_entrenador(Long id_entrenador) {
-        this.id_entrenador = id_entrenador;
-    }
-
-    public Long getId_cliente() {
-        return id_cliente;
-    }
-
-    public void setId_cliente(Long id_cliente) {
-        this.id_cliente = id_cliente;
     }
 
     public String getNombre() {
