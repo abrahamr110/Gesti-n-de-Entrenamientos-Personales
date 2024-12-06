@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuarios {
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,9 +26,9 @@ public class Usuarios {
     @Column(name = "fecha_creacion", nullable = false)
     private Date fecha_creacion;
 
-    public Usuarios() {}
+    public Usuario() {}
 
-    public Usuarios(Long id, String nombre, String contraseña, String correo, String rol, Date fecha_creacion) {
+    public Usuario(Long id, String nombre, String contraseña, String correo, String rol, Date fecha_creacion) {
         this.id = id;
         this.nombre = nombre;
         this.contraseña = contraseña;
@@ -53,12 +53,12 @@ public class Usuarios {
         this.nombre = nombre;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getCorreo() {
