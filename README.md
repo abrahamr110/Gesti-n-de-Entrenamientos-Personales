@@ -32,3 +32,49 @@ Con FitTrack, los entrenadores podrán optimizar su tiempo y ofrecer un servicio
 
 ### ✍🏻 Justificación del proyecto 
 El proyecto FitTrack nace para cubrir la necesidad de una herramienta digital que facilite la gestión de entrenamientos personalizados. Entrenadores y clientes enfrentan dificultades al usar métodos manuales o herramientas dispersas para planificar el progreso físico. FitTrack ofrece una solución integral que permite organizar planes, programar sesiones y realizar un seguimiento detallado del rendimiento. Con su enfoque práctico, la aplicación mejora la interacción entre entrenadores y clientes, optimizando la experiencia y promoviendo el bienestar físico.
+
+### 🔗  Endpoints
+A continuación, se describe la lista de endpoints a implementar en la aplicación FitTrack, organizados por la funcionalidad de las entidades:
+
+## 📊 Usuarios
+Lógica: Gestionar usuarios de la plataforma (entrenadores y clientes).
+
+* 1️⃣ Crear Usuario
+  * POST /usuarios
+   * Descripción: Crea un nuevo usuario (entrenador o cliente).
+    * Parámetros:
+json
+{
+  "nombre": "John Doe",
+  "correo": "john.doe@mail.com",
+  "contraseña": "secure123",
+  "tipo_usuario": "entrenador"
+}
+  * Respuesta: Código 201 Created
+  * Excepciones: 400 Bad Request: Si los campos requeridos están vacíos o mal formados. 409 Conflict: Si el correo ya existe en la base de datos. 500 Internal Server Error: Para errores en la base de datos.
+
+* 2️⃣ Obtener todos los Usuarios
+  * GET /usuarios
+  * Descripción: Recupera una lista de todos los usuarios.
+  * Parámetros Opcionales: tipo_usuario.
+  * Respuesta: Código 200 OK.
+  * Excepciones : 500 Internal Server Error: Error interno del servidor si algo sale mal con la consulta a la base de datos.
+
+* 3️⃣ Obtener un Usuario Específico por ID
+  * GET /usuarios/{id}
+  * Descripción: Obtiene la información de un usuario por su ID.
+  * Respuesta: Código 200 OK.
+  * Excepciones: 404 Not Found: Si el usuario con ese ID no existe en la base de datos. 500 Internal Server Error: Para errores en la base de datos.
+
+* 4️⃣ Actualizar Usuario
+  * PUT /usuarios/{id}
+  * Descripción: Actualiza la información de un usuario existente.
+  * Parámetros: nombre, correo, contraseña, tipo_usuario.
+  * Respuesta: Código 200 OK.
+  * Excepciones: 400 Bad Request: Si los campos enviados en la solicitud son inválidos. 404 Not Found: Si el usuario con ese ID no existe. 500 Internal Server Error: Para errores en la base de datos.
+
+* 5️⃣ Eliminar Usuario
+  * DELETE /usuarios/{id}
+  * Descripción: Elimina un usuario por su ID.
+  * Respuesta: Código 204 No Content.
+  * Excepciones: 404 Not Found: Si el usuario con ese ID no existe. 500 Internal Server Error: Para errores en la base de datos.
