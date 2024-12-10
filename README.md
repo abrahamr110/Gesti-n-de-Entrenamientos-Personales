@@ -78,3 +78,157 @@ json
   * Descripción: Elimina un usuario por su ID.
   * Respuesta: Código 204 No Content.
   * Excepciones: 404 Not Found: Si el usuario con ese ID no existe. 500 Internal Server Error: Para errores en la base de datos.
+
+
+## 🏋️‍♂️ Planes de Entrenamiento
+Lógica: Crear, actualizar, leer y eliminar planes asignados entre clientes y entrenadores.
+
+* 1️⃣ Crear un Plan de Entrenamiento
+  * POST /planes-entrenamiento
+  * Descripción: Crea un nuevo plan de entrenamiento.
+  * Parámetros:json{
+  "id_entrenador": 1,
+  "id_cliente": 2,
+  "nombre": "Plan de Fuerza",
+  "descripcion": "Plan para mejorar fuerza.",
+  "fecha_inicio": "2023-12-10",
+  "fecha_final": "2024-06-10"
+    }
+  * Respuesta: Código 201 Created.
+  * Excepciones: 400 Bad Request: Si alguno de los campos de la solicitud no es válido. 404 Not Found: Si el ID del entrenador o cliente no existe. 500 Internal Server Error: Error interno con la base de datos.
+    
+* 2️⃣ Obtener todos los Planes de Entrenamiento
+  * GET /planes-entrenamiento
+  * Descripción: Lista todos los planes de entrenamiento existentes.
+  * Respuesta: Código 200 OK.
+  * Excepciones: 500 Internal Server Error: Para errores en la base de datos.
+
+* 3️⃣ Obtener Plan por ID
+  * GET /planes-entrenamiento/{id}
+  * Descripción: Recupera información de un plan específico por su ID.
+  * Respuesta: Código 200 OK.
+  * Excepciones: 404 Not Found: Si el plan con ese ID no existe. 500 Internal Server Error: Para errores en la base de datos.
+
+* 4️⃣ Actualizar Plan de Entrenamiento
+  * PUT /planes-entrenamiento/{id}
+  * Descripción: Actualiza los detalles de un plan existente.
+  * Respuesta: Código 200 OK.
+  * Excepciones: 400 Bad Request: Si los campos enviados en la solicitud son inválidos. 404 Not Found: Si el plan no existe. 500 Internal Server Error: Error interno con la base de datos.
+
+* 5️⃣ Eliminar Plan de Entrenamiento
+  * DELETE /planes-entrenamiento/{id}
+  * Descripción: Elimina un plan de entrenamiento.
+  * Respuesta: Código 204 No Content.
+  * Excepciones: 404 Not Found: Si el plan no existe. 500 Internal Server Error: Error interno con la base de datos.
+
+## 🏃‍♀️ Sesiones de Entrenamiento
+Lógica: Gestionar sesiones de entrenamiento relacionadas con un plan de entrenamiento.
+
+* 1️⃣ Crear una Sesión de Entrenamiento
+  * POST /sesiones-entrenamiento
+  * Descripción: Crea una nueva sesión asociada a un plan de entrenamiento.
+  * Parámetros: json {
+     "id_planEntrenamiento": 1,
+     "fecha": "2023-12-10",
+     "duracion": 60,
+     "descripcion": "Sesión de ejercicios para fuerza."
+   }
+  * Respuesta: Código 201 Created.
+  * Excepciones: 400 Bad Request: Si los datos proporcionados no son válidos. 404 Not Found: Si el ID del plan de entrenamiento no existe. 500 Internal Server Error: Para errores en la base de datos.
+
+* 2️⃣ Obtener todas las Sesiones
+   * GET /sesiones-entrenamiento
+   * Descripción: Lista todas las sesiones existentes.
+   * Respuesta: Código 200 OK.
+   * Excepciones: 500 Internal Server Error: Error interno con la base de datos.
+
+* 3️⃣ Obtener una Sesión Específica por ID
+  * GET /sesiones-entrenamiento/{id}
+  * Descripción: Recupera información de una sesión específica.
+  * Respuesta: Código 200 OK.
+  * Excepciones: 404 Not Found: Si la sesión no existe. 500 Internal Server Error: Para errores en la base de datos.
+
+* 4️⃣ Actualizar una Sesión
+  * PUT /sesiones-entrenamiento/{id}
+  * Descripción: Actualiza una sesión existente.
+  * Respuesta: Código 200 OK.
+  * Excepciones: 400 Bad Request: Datos inválidos en la solicitud. 404 Not Found: Si la sesión no existe. 500 Internal Server Error: Para errores en la base de datos.
+
+* 5️⃣ Eliminar una Sesión
+  * DELETE /sesiones-entrenamiento/{id}
+  * Descripción: Elimina una sesión de entrenamiento.
+  * Respuesta: Código 204 No Content.
+  * Excepciones: 404 Not Found: Si la sesión no existe. 500 Internal Server Error: Para errores en la base de datos.
+
+## 📊 Progresos
+Lógica: Gestionar y registrar el progreso de los clientes en sus sesiones de entrenamiento.
+
+* 1️⃣ Crear Progreso
+  * POST /progresos
+  * Descripción: Registra un nuevo progreso para un cliente en una sesión de entrenamiento.
+  * Parámetros: json{
+     "id_sesion": 1,
+     "id_cliente": 2,
+     "peso_levantado": 50,
+     "repeticiones": 10,
+     "comentarios": "Buen rendimiento en el ejercicio."
+   }
+  * Respuesta: Código 201 Created: Progreso creado exitosamente.
+  * Excepciones posibles: 400 Bad Request: Datos inválidos en el cuerpo de la solicitud. 404 Not Found: ID de sesión o cliente no existente.
+
+* 2️⃣ Obtener Todos los Progresos
+  * GET /progresos
+  * Descripción: Recupera todos los registros de progreso de los clientes.
+  * Respuesta: Código 200 OK: Lista de progresos devuelta con éxito.
+  * Excepciones posibles: 500 Internal Server Error: Error en la consulta a la base de datos.
+
+* 3️⃣ Obtener Progreso Específico
+  * GET /progresos/{id}
+  * Descripción: Recupera la información de un progreso específico por su ID.
+  * Respuesta: Código 200 OK: Progreso devuelto con éxito.
+  * Excepciones posibles: 404 Not Found: El progreso con el ID solicitado no existe. 500 Internal Server Error: Error interno en el servidor.
+
+* 4️⃣ Actualizar Progreso
+  *  PUT /progresos/{id}
+  *  Descripción: Actualiza los datos de un registro de progreso existente.
+  *  Parámetros: json
+    {
+      "peso_levantado": 55,
+      "repeticiones": 12,
+      "comentarios": "Incremento en el rendimiento"
+    }
+  * Respuesta: Código 200 OK: Progreso actualizado con éxito.
+  * Excepciones posibles: 400 Bad Request: Datos inválidos en el cuerpo de la solicitud. 404 Not Found: El progreso con el ID solicitado no existe. 500 Internal Server Error: Error en la base de datos.
+
+* 5️⃣ Eliminar Progreso
+  * DELETE /progresos/{id}
+  * Descripción: Elimina un registro de progreso por su ID.
+  * Respuesta: Código 204 No Content: Progreso eliminado con éxito.
+  * Excepciones posibles: 404 Not Found: El progreso con el ID solicitado no existe. 500 Internal Server Error: Error interno en la base de datos.
+ 
+## ⚙️ Lógica de Negocio
+La lógica de negocio de la aplicación FitTrack se centra en lo siguiente:
+1. Gestión de Entrenadores y Clientes: Crear, listar, actualizar y eliminar usuarios.
+2. Asignación de Planes: Los entrenadores podrán asignar planes a clientes.
+3. Gestión de Sesiones: Las sesiones de entrenamiento estarán vinculadas a planes específicos para un seguimiento efectivo.
+4. Seguimiento de Progresos: Crear y almacenar métricas de progreso de clientes en relación a sus sesiones de entrenamiento.
+
+## 🛑 Excepciones y Códigos de Respuesta
+Se implementarán las siguientes excepciones:
+1. 404 Not Found:
+   Si un recurso no existe en la base de datos.
+2. 400 Bad Request:
+   Si la solicitud está mal formada.
+3. 401 Unauthorized:
+   Si el usuario no tiene permisos para realizar la operación.
+4. 500 Internal Server Error:
+   Para errores internos del servidor.
+
+## 🔒 Restricciones de Seguridad
+Se implementarán las siguientes medidas de seguridad:
+1. Autenticación y Autorización con JWT:
+   Se protegerán los endpoints con tokens JWT.
+2. Validación de Entradas:
+   Se validarán los campos en las solicitudes para evitar errores y ataques de inyección.
+3. CORS Configuration:
+   Se configurará correctamente la política de CORS para limitar el acceso a solicitudes no permitidas.
