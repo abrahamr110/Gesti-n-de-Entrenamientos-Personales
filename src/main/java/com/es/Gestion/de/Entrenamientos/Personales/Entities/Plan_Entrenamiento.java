@@ -33,14 +33,13 @@ public class Plan_Entrenamiento {
 
     public Plan_Entrenamiento() {}
 
-    public Plan_Entrenamiento(Long id, Usuario id_entrenador, Usuario id_cliente, String nombre, String descripcion, Date fecha_inicio, Date fecha_final) {
-        this.id = id;
-        this.id_entrenador = id_entrenador;
-        this.id_cliente = id_cliente;
+    public Plan_Entrenamiento(String nombre, String descripcion, Date fecha_inicio, Date fecha_final, Usuario id_entrenador, Usuario id_cliente) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;
         this.fecha_final = fecha_final;
+        this.id_entrenador = id_entrenador;
+        this.id_cliente = id_cliente;
     }
 
     public Long getId() {
@@ -81,5 +80,21 @@ public class Plan_Entrenamiento {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Usuario getId_entrenador() {
+        return id_entrenador;
+    }
+
+    public void setId_entrenador(Usuario id_entrenador) {
+        this.id_entrenador = id_entrenador;
+    }
+
+    public Usuario getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(Usuario id_cliente) {
+        this.id_cliente = id_cliente;
     }
 }

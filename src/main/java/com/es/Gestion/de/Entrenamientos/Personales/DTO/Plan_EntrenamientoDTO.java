@@ -1,5 +1,7 @@
 package com.es.Gestion.de.Entrenamientos.Personales.DTO;
 
+import com.es.Gestion.de.Entrenamientos.Personales.Entities.Usuario;
+
 import java.util.Date;
 
 public class Plan_EntrenamientoDTO {
@@ -7,12 +9,21 @@ public class Plan_EntrenamientoDTO {
     private String descripcion;
     private Date fecha_inicio;
     private Date fecha_final;
+    private UsuarioDTO id_entrenador;
+    private UsuarioDTO id_cliente;
 
-    public Plan_EntrenamientoDTO(String nombre, String descripcion, Date fecha_inicio, Date fecha_final) {
+    public Plan_EntrenamientoDTO(String nombre, String descripcion, Date fecha_inicio, Date fecha_final,UsuarioDTO id_entrenador, UsuarioDTO id_cliente) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;
         this.fecha_final = fecha_final;
+        this.id_entrenador = id_entrenador;
+        this.id_cliente = id_cliente;
+    }
+
+    public Plan_EntrenamientoDTO() {}
+
+    public Plan_EntrenamientoDTO(String nombre, String descripcion, Date fechaInicio, Date fechaFinal, Usuario idEntrenador, Usuario idCliente) {
     }
 
     public String getNombre() {
@@ -46,4 +57,22 @@ public class Plan_EntrenamientoDTO {
     public void setFecha_final(Date fecha_final) {
         this.fecha_final = fecha_final;
     }
+
+    public UsuarioDTO getId_entrenador() {
+        return id_entrenador;
+    }
+
+    public void setId_entrenador(UsuarioDTO id_entrenador) {
+        this.id_entrenador = id_entrenador;
+    }
+
+    public UsuarioDTO getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(UsuarioDTO id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+
 }

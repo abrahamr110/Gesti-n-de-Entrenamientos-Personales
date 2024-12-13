@@ -17,6 +17,13 @@ public class UsuarioDTO {
         this.fecha_creacion = fecha_creacion;
     }
 
+    public UsuarioDTO(String nombre, String correo, String contrasena, String rol) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.rol = rol;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -46,5 +53,8 @@ public class UsuarioDTO {
     }
     public void setFecha_creacion(Date fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
+    }
+
+    public Long getId() {
     }
 }
