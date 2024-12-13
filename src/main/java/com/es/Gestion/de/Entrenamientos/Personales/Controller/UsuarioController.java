@@ -25,7 +25,7 @@ public class UsuarioController {
     @PostMapping("/login")
     public String login(UsuarioLoginDTO usuarioLoginDTO) {
         Authentication authentication= authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(usuarioLoginDTO.getUsername(), usuarioLoginDTO.getPassword())
+                new UsernamePasswordAuthenticationToken(usuarioLoginDTO.getNombre(), usuarioLoginDTO.getContrasena())
         );
         return authentication.toString();
     }
