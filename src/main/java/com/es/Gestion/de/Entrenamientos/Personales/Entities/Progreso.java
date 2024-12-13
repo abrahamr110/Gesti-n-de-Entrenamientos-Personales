@@ -31,8 +31,7 @@ public class Progreso {
 
     public Progreso() {}
 
-    public Progreso(Long id, Double peso, int repiticiones, Double calorias, String observaciones) {
-        this.id = id;
+    public Progreso(Double peso, int repiticiones, Double calorias, String observaciones) {
         this.peso = peso;
         this.repiticiones = repiticiones;
         this.calorias = calorias;
