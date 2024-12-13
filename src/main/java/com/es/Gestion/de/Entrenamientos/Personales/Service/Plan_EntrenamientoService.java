@@ -32,80 +32,40 @@ public class Plan_EntrenamientoService {
     }
 
     public Plan_EntrenamientoDTO createPlan(Plan_EntrenamientoDTO plan) {
-        Usuario entrenador = null;
+        Plan_Entrenamiento newPlan = new Plan_Entrenamiento();
+        newPlan.setNombre(plan.getNombre());
+        newPlan.setDescripcion(plan.getDescripcion());
+        newPlan.setFecha_inicio(plan.getFecha_inicio());
+        newPlan.setFecha_final(plan.getFecha_final());
+
         if (plan.getId_entrenador() != null) {
-            entrenador = new Usuario(
-                    null,
-                    plan.getId_entrenador().getNombre(),
-                    plan.getId_entrenador().getContrasena(),
-                    plan.getId_entrenador().getCorreo(),
-                    plan.getId_entrenador().getRol(),
-                    plan.getId_entrenador().getFecha_creacion()
-            );
+            Usuario entrenador = usuarioRepository.findById(plan.getId_entrenador()).orElse(null);
+            if (entrenador != null) {
+                newPlan.setId_entrenador(entrenador.getId());
+            }
         }
 
-        Usuario cliente = null;
         if (plan.getId_cliente() != null) {
-            cliente = new Usuario(
-                    null,
-                    plan.getId_cliente().getNombre(),
-                    plan.getId_cliente().getContrasena(),
-                    plan.getId_cliente().getCorreo(),
-                    plan.getId_cliente().getRol(),
-                    plan.getId_cliente().getFecha_creacion()
-            );
+            Usuario cliente = usuarioRepository.findById(plan.getId_cliente()).orElse(null);
+            if (cliente != null) {
+                newPlan.setId_cliente(cliente.getId());
+            }
         }
 
-        Plan_Entrenamiento newPlan = new Plan_Entrenamiento(
-                plan.getNombre(),
-                plan.getDescripcion(),
-                plan.getFecha_inicio(),
-                plan.getFecha_final(),
-                entrenador,
-                cliente
-        );
-
-        Plan_Entrenamiento savedPlan = plan_entrenamientoRepository.save(newPlan);
-
-        return Mapper.toDTOPlan(savedPlan);
+        plan_entrenamientoRepository.save(newPlan);
+        return Mapper.toDTOPlan(newPlan);
     }
 
     public Plan_EntrenamientoDTO updatePlan(Long id, Plan_EntrenamientoDTO planDTO) {
-        Plan_Entrenamiento existingPlan = plan_entrenamientoRepository.findById(id).orElse(null);
-
-        if (existingPlan != null) {
-            existingPlan.setNombre(planDTO.getNombre());
-            existingPlan.setDescripcion(planDTO.getDescripcion());
-            existingPlan.setFecha_inicio(planDTO.getFecha_inicio());
-            existingPlan.setFecha_final(planDTO.getFecha_final());
-
-            if (planDTO.getId_entrenador() != null) {
-                Usuario entrenador = usuarioRepository.findById(planDTO.getId_entrenador().getId()).orElse(null);
-                if (entrenador != null) {
-                    existingPlan.setId_entrenador(entrenador);
-                }
-            }
-
-            if (planDTO.getId_cliente() != null) {
-                Usuario cliente = usuarioRepository.findById(planDTO.getId_cliente().getId()).orElse(null);
-                if (cliente != null) {
-                    existingPlan.setId_cliente(cliente);
-                }
-            }
-
-            Plan_Entrenamiento updatedPlan = plan_entrenamientoRepository.save(existingPlan);
-
-            return new Plan_EntrenamientoDTO(
-                    updatedPlan.getNombre(),
-                    updatedPlan.getDescripcion(),
-                    updatedPlan.getFecha_inicio(),
-                    updatedPlan.getFecha_final(),
-                    updatedPlan.getId_entrenador(),
-                    updatedPlan.getId_cliente()
-            );
-        }
-
-        return null;
+       Plan_Entrenamiento plan = plan_entrenamientoRepository.findById(id).orElse(null);
+       plan.setNombre(planDTO.getNombre());
+       plan.setDescripcion(planDTO.getDescripcion());
+       plan.setFecha_inicio(planDTO.getFecha_inicio());
+       plan.setFecha_final(planDTO.getFecha_final());
+       plan.setId_cliente(planDTO.getId_cliente());
+       plan.setId_entrenador(planDTO.getId_entrenador());
+       plan_entrenamientoRepository.save(plan);
+       return Mapper.toDTOPlan(plan);
     }
 
     public void deletePlan(Long id) {
