@@ -17,7 +17,7 @@ public class Mapper {
     }
 
     public static Plan_EntrenamientoDTO toDTOPlan(Plan_Entrenamiento plan) {
-        return new Plan_EntrenamientoDTO(plan.getNombre(), plan.getDescripcion(), plan.getFecha_inicio(), plan.getFecha_final(), plan.getId_entrenador(), plan.getId_cliente());
+        return new Plan_EntrenamientoDTO(plan.getNombre(), plan.getDescripcion(), plan.getFecha_inicio(), plan.getFecha_final());
     }
 
     public static Sesion_EntrenamientoDTO toDTOSesion(Sesion_Entrenamiento sesion) {

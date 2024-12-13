@@ -23,8 +23,7 @@ public class Plan_EntrenamientoDTO {
 
     public Plan_EntrenamientoDTO() {}
 
-    public Plan_EntrenamientoDTO(String nombre, String descripcion, Date fechaInicio, Date fechaFinal, Usuario idEntrenador, Usuario idCliente) {
-    }
+
 
     public String getNombre() {
         return nombre;
@@ -58,19 +57,19 @@ public class Plan_EntrenamientoDTO {
         this.fecha_final = fecha_final;
     }
 
-    public UsuarioDTO getId_entrenador() {
+    public Long getId_entrenador() {
         return id_entrenador;
     }
 
-    public void setId_entrenador(UsuarioDTO id_entrenador) {
+    public void setId_entrenador(Long id_entrenador) {
         this.id_entrenador = id_entrenador;
     }
 
-    public UsuarioDTO getId_cliente() {
+    public Long getId_cliente() {
         return id_cliente;
     }
 
-    public void setId_cliente(UsuarioDTO id_cliente) {
+    public void setId_cliente(Long id_cliente) {
         this.id_cliente = id_cliente;
     }
 

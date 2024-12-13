@@ -12,13 +12,12 @@ public class Plan_EntrenamientoDTO {
     private Long id_entrenador;
     private Long id_cliente;
 
-    public Plan_EntrenamientoDTO(String nombre, String descripcion, Date fecha_inicio, Date fecha_final,Long id_entrenador, Long id_cliente) {
+    public Plan_EntrenamientoDTO(String nombre, String descripcion, Date fecha_inicio, Date fecha_final) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;
         this.fecha_final = fecha_final;
-        this.id_entrenador = id_entrenador;
-        this.id_cliente = id_cliente;
+
     }
 
     public Plan_EntrenamientoDTO() {}

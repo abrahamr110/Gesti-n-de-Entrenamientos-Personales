@@ -41,14 +41,14 @@ public class Plan_EntrenamientoService {
         if (plan.getId_entrenador() != null) {
             Usuario entrenador = usuarioRepository.findById(plan.getId_entrenador()).orElse(null);
             if (entrenador != null) {
-                newPlan.setId_entrenador(entrenador.getId());
+                newPlan.setId_entrenador(entrenador);
             }
         }
 
         if (plan.getId_cliente() != null) {
             Usuario cliente = usuarioRepository.findById(plan.getId_cliente()).orElse(null);
             if (cliente != null) {
-                newPlan.setId_cliente(cliente.getId());
+                newPlan.setId_cliente(cliente);
             }
         }
 
@@ -62,8 +62,7 @@ public class Plan_EntrenamientoService {
        plan.setDescripcion(planDTO.getDescripcion());
        plan.setFecha_inicio(planDTO.getFecha_inicio());
        plan.setFecha_final(planDTO.getFecha_final());
-       plan.setId_cliente(planDTO.getId_cliente());
-       plan.setId_entrenador(planDTO.getId_entrenador());
+
        plan_entrenamientoRepository.save(plan);
        return Mapper.toDTOPlan(plan);
     }
