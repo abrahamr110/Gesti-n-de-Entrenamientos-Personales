@@ -1,7 +1,5 @@
 package com.es.Gestion.de.Entrenamientos.Personales.Controller;
 
-import com.es.Gestion.de.Entrenamientos.Personales.DTO.UsuarioLoginDTO;
-import com.es.Gestion.de.Entrenamientos.Personales.DTO.UsuarioRegisterDTO;
 import com.es.Gestion.de.Entrenamientos.Personales.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +27,7 @@ public class UsuarioController {
         );
         return authentication.toString();
     }
+
 
     @PostMapping("/register")
     public ResponseEntity<UsuarioRegisterDTO> register(

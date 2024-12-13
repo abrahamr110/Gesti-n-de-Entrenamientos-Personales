@@ -28,13 +28,19 @@ public class Usuario {
 
     public Usuario() {}
 
-    public Usuario(Long id, String nombre, String contraseña, String correo, String rol, Date fecha_creacion) {
+    public Usuario(Long id, String nombre, String contrasena, String correo, String rol, Date fecha_creacion) {
         this.id = id;
         this.nombre = nombre;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
         this.correo = correo;
         this.rol = rol;
         this.fecha_creacion = fecha_creacion;
+    }
+
+    public Usuario(String nombre, String contrasena, String rol) {
+        this.nombre = nombre;
+        this.contrasena = contrasena;
+        this.rol = rol;
     }
 
     public Long getId() {
