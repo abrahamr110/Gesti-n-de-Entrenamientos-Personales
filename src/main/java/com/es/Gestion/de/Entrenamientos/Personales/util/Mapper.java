@@ -1,8 +1,10 @@
 package com.es.Gestion.de.Entrenamientos.Personales.util;
 
 import com.es.Gestion.de.Entrenamientos.Personales.DTO.Plan_EntrenamientoDTO;
+import com.es.Gestion.de.Entrenamientos.Personales.DTO.Sesion_EntrenamientoDTO;
 import com.es.Gestion.de.Entrenamientos.Personales.DTO.UsuarioDTO;
 import com.es.Gestion.de.Entrenamientos.Personales.Entities.Plan_Entrenamiento;
+import com.es.Gestion.de.Entrenamientos.Personales.Entities.Sesion_Entrenamiento;
 import com.es.Gestion.de.Entrenamientos.Personales.Entities.Usuario;
 
 public class Mapper {
@@ -13,7 +15,6 @@ public class Mapper {
     }
 
     public static Plan_EntrenamientoDTO toDTOPlan(Plan_Entrenamiento plan) {
-        // Verificar si el entrenador y el cliente están presentes y mapearlos a DTOs sin el id
         UsuarioDTO entrenadorDTO = (plan.getId_entrenador() != null)
                 ? new UsuarioDTO(
                 plan.getId_entrenador().getNombre(),
@@ -40,5 +41,8 @@ public class Mapper {
         );
     }
 
+    public static Sesion_EntrenamientoDTO toDTOSesion(Sesion_Entrenamiento sesion) {
+        return new Sesion_EntrenamientoDTO(sesion.getFecha_sesion(), sesion.getDuracion(), sesion.getDescripcion());
+    }
 
 }

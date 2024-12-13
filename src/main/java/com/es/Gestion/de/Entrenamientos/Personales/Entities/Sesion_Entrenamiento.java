@@ -26,8 +26,7 @@ public class Sesion_Entrenamiento {
 
     public Sesion_Entrenamiento() {}
 
-    public Sesion_Entrenamiento(Long id, Date fecha_sesion, int duracion, String descripcion) {
-        this.id = id;
+    public Sesion_Entrenamiento(Date fecha_sesion, int duracion, String descripcion) {
         this.fecha = fecha_sesion;
         this.duracion = duracion;
         this.descripcion = descripcion;
