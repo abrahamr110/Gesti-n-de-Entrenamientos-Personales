@@ -4,6 +4,7 @@ import com.es.Gestion.de.Entrenamientos.Personales.DTO.UsuarioDTO;
 import com.es.Gestion.de.Entrenamientos.Personales.DTO.UsuarioLoginDTO;
 import com.es.Gestion.de.Entrenamientos.Personales.DTO.UsuarioRegisterDTO;
 import com.es.Gestion.de.Entrenamientos.Personales.Service.UsuarioService;
+import com.es.Gestion.de.Entrenamientos.Personales.util.UsuarioValidacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private UsuarioValidacion usuarioValidacion;
 
     @PostMapping("/login")
     public String login(UsuarioLoginDTO usuarioLoginDTO) {
@@ -44,6 +48,27 @@ public class UsuarioController {
     @GetMapping("/")
     public ResponseEntity<UsuarioDTO> getAll() {
         return ResponseEntity.ok(usuarioService.getAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioDTO> getUser(@PathVariable Long id) {
+        try {
+            UsuarioDTO usuario = usuarioService.getUserById(id);
+            return ResponseEntity.ok(usuario);
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UsuarioDTO> updateUser(@PathVariable Long id, @RequestBody UsuarioDTO user) {
+        return ResponseEntity.ok(usuarioService.updateUser(id, user));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        usuarioService.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 }
 

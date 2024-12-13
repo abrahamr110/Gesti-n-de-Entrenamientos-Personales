@@ -17,7 +17,6 @@ import com.es.Gestion.de.Entrenamientos.Personales.util.Mapper;
 import java.util.List;
 @Service
 public class UsuarioService implements UserDetailsService {
-
     @Autowired
     private UsuarioRepository usuarioRepository;
 
@@ -47,6 +46,37 @@ public class UsuarioService implements UserDetailsService {
     public UsuarioDTO getAll() {
         List<Usuario> usuarios = usuarioRepository.findAll();
         return Mapper.toDTO(usuarios.get(0));
+    }
+
+    public UsuarioDTO getUserById(Long id) {
+        usuarioValidacion.validateGetUserById(id);
+        Usuario user = usuarioRepository.findById(id).orElse(null);
+        return Mapper.toDTO(user);
+    }
+
+    public UsuarioDTO updateUser(Long id, UsuarioDTO user) {
+        usuarioValidacion.validateUpdateUser(id, user);
+
+        Usuario existingUser = usuarioRepository.findById(id).orElse(null);
+
+        existingUser.setNombre(user.getNombre());
+
+        if (user.getContrasena() != null && !user.getContrasena().isEmpty()) {
+            existingUser.setContrasena(passwordEncoder.encode(user.getContrasena()));
+        }
+
+        existingUser.setRol(user.getRol());
+        existingUser.setFecha_creacion(user.getFecha_creacion());
+        existingUser.setCorreo(user.getCorreo());
+
+        Usuario updatedUser = usuarioRepository.save(existingUser);
+
+        return Mapper.toDTO(updatedUser);
+    }
+
+    public void deleteUser(Long id) {
+        usuarioValidacion.validateDeleteUser(id);
+        usuarioRepository.deleteById(id);
     }
 }
 
