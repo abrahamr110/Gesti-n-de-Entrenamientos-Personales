@@ -17,12 +17,9 @@ public class Plan_EntrenamientoDTO {
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;
         this.fecha_final = fecha_final;
-
     }
 
     public Plan_EntrenamientoDTO() {}
-
-
 
     public String getNombre() {
         return nombre;

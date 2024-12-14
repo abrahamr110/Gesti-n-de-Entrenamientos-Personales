@@ -52,10 +52,10 @@ public class ProgresoService {
     public ProgresoDTO addProgreso(ProgresoDTO progresoDTO) {
         progresoValidacion.validateAddProgreso(progresoDTO);
 
-        Usuario cliente = usuarioRepository.findById(progresoDTO.getId_cliente().getId())
+        Usuario cliente = usuarioRepository.findById(progresoDTO.getId_cliente())
                 .orElseThrow(() -> new IllegalArgumentException("El cliente con ID " + progresoDTO.getId_cliente() + " no existe."));
 
-        Sesion_Entrenamiento sesion = sesionRepository.findById(progresoDTO.getId_sesion().getId())
+        Sesion_Entrenamiento sesion = sesionRepository.findById(progresoDTO.getId_sesion())
                 .orElseThrow(() -> new IllegalArgumentException("La sesión de entrenamiento con ID " + progresoDTO.getId_sesion() + " no existe."));
 
         Progreso progreso = new Progreso(

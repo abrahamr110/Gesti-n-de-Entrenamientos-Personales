@@ -31,11 +31,13 @@ public class Progreso {
 
     public Progreso() {}
 
-    public Progreso(Double peso, int repiticiones, Double calorias, String observaciones) {
+    public Progreso(Double peso, int repiticiones, Double calorias, String observaciones, Sesion_Entrenamiento id_sesion, Usuario id_cliente) {
         this.peso = peso;
         this.repiticiones = repiticiones;
         this.calorias = calorias;
         this.observaciones = observaciones;
+        this.id_sesion = id_sesion;
+        this.id_cliente = id_cliente;
     }
 
     public Long getId() {
@@ -76,5 +78,21 @@ public class Progreso {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+
+    public Sesion_Entrenamiento getId_sesion() {
+        return id_sesion;
+    }
+
+    public void setId_sesion(Sesion_Entrenamiento id_sesion) {
+        this.id_sesion = id_sesion;
+    }
+
+    public Usuario getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(Usuario id_cliente) {
+        this.id_cliente = id_cliente;
     }
 }

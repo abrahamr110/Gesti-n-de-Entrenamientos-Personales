@@ -10,9 +10,7 @@ public class Sesion_EntrenamientoValidacion {
         if (sesionDTO.getFecha() == null) {
             throw new IllegalArgumentException("La fecha de la sesión es obligatoria");
         }
-        if (sesionDTO.getDuracion() == null || sesionDTO.getDuracion() <= 0) {
-            throw new IllegalArgumentException("La duración de la sesión debe ser mayor a 0");
-        }
+
         if (sesionDTO.getDescripcion() == null || sesionDTO.getDescripcion().isEmpty()) {
             throw new IllegalArgumentException("La descripción de la sesión es obligatoria");
         }
@@ -22,9 +20,7 @@ public class Sesion_EntrenamientoValidacion {
         if (id == null || id <= 0) {
             throw new IllegalArgumentException("El ID de la sesión debe ser mayor a 0");
         }
-        if (sesionDTO.getDuracion() != null && sesionDTO.getDuracion() <= 0) {
-            throw new IllegalArgumentException("La duración de la sesión debe ser mayor a 0");
-        }
+
         if (sesionDTO.getDescripcion() != null && sesionDTO.getDescripcion().isEmpty()) {
             throw new IllegalArgumentException("La descripción de la sesión no puede estar vacía");
         }

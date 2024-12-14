@@ -31,7 +31,7 @@ public class Plan_EntrenamientoService {
         List<Plan_EntrenamientoDTO> planDTOs = new ArrayList<>();
 
         planes.forEach(plan -> {
-            Plan_EntrenamientoDTO planDTO = Mapper.toDTOPlan(plan);
+            Plan_EntrenamientoDTO planDTO = Mapper.toDTOPlan(plan); 
             planDTOs.add(planDTO);
         });
 

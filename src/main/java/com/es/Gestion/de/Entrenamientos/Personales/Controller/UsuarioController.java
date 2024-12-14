@@ -6,6 +6,7 @@ import com.es.Gestion.de.Entrenamientos.Personales.DTO.UsuarioRegisterDTO;
 import com.es.Gestion.de.Entrenamientos.Personales.Service.UsuarioService;
 import com.es.Gestion.de.Entrenamientos.Personales.util.UsuarioValidacion;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import com.es.Gestion.de.Entrenamientos.Personales.Service.TokenService;
+
+import java.util.List;
 
 @RestController()
 @RequestMapping("/usuarios")
@@ -48,22 +51,23 @@ public class UsuarioController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UsuarioRegisterDTO> register(
-            @RequestBody UsuarioRegisterDTO usuarioRegisterDTO
-    ) {
+    public ResponseEntity<UsuarioRegisterDTO> register(@RequestBody UsuarioRegisterDTO usuarioRegisterDTO) {
         try {
             return ResponseEntity.ok(usuarioService.registerUser(usuarioRegisterDTO));
         } catch (IllegalArgumentException ex) {
+
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
+
     @GetMapping("/")
-    public ResponseEntity<UsuarioDTO> getAll() {
+    public ResponseEntity<List<UsuarioDTO>> getAll() {
         try{
-            return ResponseEntity.ok(usuarioService.getAll());
+            List<UsuarioDTO> usuarios = usuarioService.getAll();
+            return ResponseEntity.ok(usuarios);
         }catch (IllegalArgumentException ex){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }catch (Exception ex){

@@ -25,6 +25,6 @@ public class Mapper {
     }
 
     public static ProgresoDTO toDTOProgreso(Progreso progreso) {
-        return new ProgresoDTO(progreso.getCalorias(),progreso.getRepiticiones(),progreso.getPeso(), progreso.getObservaciones());
+        return new ProgresoDTO(progreso.getCalorias(),progreso.getRepiticiones(),progreso.getPeso(), progreso.getObservaciones(),progreso.getId_cliente(),progreso.getId_sesion());
     }
 }

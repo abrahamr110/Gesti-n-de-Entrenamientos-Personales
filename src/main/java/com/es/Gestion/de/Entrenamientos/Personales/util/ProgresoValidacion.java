@@ -1,5 +1,6 @@
 package com.es.Gestion.de.Entrenamientos.Personales.util;
 
+import com.es.Gestion.de.Entrenamientos.Personales.DTO.ProgresoDTO;
 import com.es.Gestion.de.Entrenamientos.Personales.Repository.ProgresoRepository;
 import com.es.Gestion.de.Entrenamientos.Personales.Entities.Progreso;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +21,13 @@ public class ProgresoValidacion {
         }
     }
 
-    public void validateAddProgreso(Progreso progreso) {
+    public void validateAddProgreso(ProgresoDTO progreso) {
         if (progreso == null) {
             throw new IllegalArgumentException("El objeto progreso no puede ser nulo.");
         }
 
         if (progreso.getPeso() == null || progreso.getPeso() <= 0) {
             throw new IllegalArgumentException("El peso debe ser un valor mayor a 0.");
-        }
-
-        if (progreso.getRepiticiones() <= 0) {
-            throw new IllegalArgumentException("Las repeticiones deben ser un valor mayor a 0.");
         }
 
         if (progreso.getCalorias() == null || progreso.getCalorias() < 0) {
@@ -42,7 +39,7 @@ public class ProgresoValidacion {
         }
     }
 
-    public void validateUpdateProgreso(Long id, Progreso progreso) {
+    public void validateUpdateProgreso(Long id, ProgresoDTO progreso) {
         validateGetProgreso(id);
 
         validateAddProgreso(progreso);

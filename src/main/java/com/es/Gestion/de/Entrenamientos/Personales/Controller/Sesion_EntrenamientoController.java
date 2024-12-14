@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.es.Gestion.de.Entrenamientos.Personales.Service.Sesion_EntrenamientoService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/sesion_entrenamiento")
 public class Sesion_EntrenamientoController {
@@ -14,9 +16,10 @@ public class Sesion_EntrenamientoController {
     private Sesion_EntrenamientoService sesion_entrenamientoService;
 
     @GetMapping("/")
-    public ResponseEntity<Sesion_EntrenamientoDTO> getAll() {
+    public ResponseEntity<List<Sesion_EntrenamientoDTO>> getAll() {
         try{
-            return ResponseEntity.ok(sesion_entrenamientoService.getAll());
+            List<Sesion_EntrenamientoDTO> sesiones = sesion_entrenamientoService.getAll();
+            return ResponseEntity.ok(sesiones);
         }catch (IllegalArgumentException ex){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }catch (Exception ex){
@@ -36,9 +39,9 @@ public class Sesion_EntrenamientoController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Sesion_EntrenamientoDTO> createSesion(@RequestBody Sesion_EntrenamientoDTO sesion) {
+    public ResponseEntity<Sesion_EntrenamientoDTO> createSesion(@RequestBody Sesion_EntrenamientoDTO s) {
         try{
-            return ResponseEntity.ok(sesion_entrenamientoService.createSesion(sesion));
+            return ResponseEntity.ok(sesion_entrenamientoService.createSesion(s));
         }catch (IllegalArgumentException ex){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }catch (Exception ex){

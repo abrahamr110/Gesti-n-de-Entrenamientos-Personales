@@ -10,6 +10,8 @@ import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 import com.es.Gestion.de.Entrenamientos.Personales.Service.ProgresoService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/progreso")
 public class ProgresoController {
@@ -18,10 +20,11 @@ public class ProgresoController {
     private ProgresoService progresoService;
 
     @GetMapping("/")
-    public ResponseEntity<ProgresoDTO> getAll() {
+    public ResponseEntity<List<ProgresoDTO>> getAll() {
         try {
-            ProgresoDTO progreso = progresoService.getAll();
-            return ResponseEntity.ok(progreso);
+            List<ProgresoDTO> progresos = progresoService.getAll();
+
+            return ResponseEntity.ok(progresos);
         } catch (IllegalArgumentException ex) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -44,13 +47,16 @@ public class ProgresoController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<ProgresoDTO> addProgreso(@RequestBody Progreso progreso) {
+    public ResponseEntity<ProgresoDTO> addProgreso(@RequestBody ProgresoDTO progresoDTO) {
         try {
-            ProgresoDTO newProgreso = progresoService.addProgreso(progreso);
+            ProgresoDTO newProgreso = progresoService.addProgreso(progresoDTO);
+
             return ResponseEntity.status(HttpStatus.CREATED).body(newProgreso);
         } catch (IllegalArgumentException ex) {
+            // Error si las IDs no existen o los datos son incorrectos
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } catch (Exception ex) {
+            // Manejo de otros errores
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

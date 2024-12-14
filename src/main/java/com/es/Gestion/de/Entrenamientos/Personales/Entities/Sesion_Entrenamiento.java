@@ -12,7 +12,7 @@ public class Sesion_Entrenamiento {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_planEntrenamiento", nullable = false)
+    @JoinColumn(name = "id_planEntrenamiento", nullable = true)
     private Plan_Entrenamiento id_planEntrenamiento;
 
     @Column(name = "fecha", nullable = false)
@@ -26,10 +26,11 @@ public class Sesion_Entrenamiento {
 
     public Sesion_Entrenamiento() {}
 
-    public Sesion_Entrenamiento(Date fecha, int duracion, String descripcion) {
+    public Sesion_Entrenamiento(Date fecha, int duracion, String descripcion, Plan_Entrenamiento planEntrenamiento) {
         this.fecha = fecha;
         this.duracion = duracion;
         this.descripcion = descripcion;
+        this.id_planEntrenamiento = planEntrenamiento;
     }
 
     public Long getId() {

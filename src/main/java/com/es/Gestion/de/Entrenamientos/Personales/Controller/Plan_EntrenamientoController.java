@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.es.Gestion.de.Entrenamientos.Personales.Service.Plan_EntrenamientoService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/plan_entrenamiento")
 public class Plan_EntrenamientoController {
@@ -14,15 +16,17 @@ public class Plan_EntrenamientoController {
     private Plan_EntrenamientoService plan_entrenamientoService;
 
     @GetMapping("/")
-    public ResponseEntity<Plan_EntrenamientoDTO> getAll() {
-        try{
-            return ResponseEntity.ok(plan_entrenamientoService.getAll());
-        }catch (IllegalArgumentException ex){
+    public ResponseEntity<List<Plan_EntrenamientoDTO>> getAll() {
+        try {
+            List<Plan_EntrenamientoDTO> planes = plan_entrenamientoService.getAll();
+            return ResponseEntity.ok(planes);
+        } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Plan_EntrenamientoDTO> getPlanById(@PathVariable Long id) {

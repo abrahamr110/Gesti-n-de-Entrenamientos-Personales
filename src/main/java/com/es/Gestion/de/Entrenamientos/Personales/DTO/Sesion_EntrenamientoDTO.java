@@ -4,10 +4,11 @@ import java.util.Date;
 
 public class Sesion_EntrenamientoDTO {
     private Date fecha;
-    private Integer duracion;
+    private int duracion;
     private String descripcion;
+    private Long id_plan_entrenamiento;
 
-    public Sesion_EntrenamientoDTO(Date fecha, Integer duracion, String descripcion) {
+    public Sesion_EntrenamientoDTO(Date fecha, int duracion, String descripcion) {
         this.fecha = fecha;
         this.duracion = duracion;
         this.descripcion = descripcion;
@@ -21,11 +22,11 @@ public class Sesion_EntrenamientoDTO {
         this.fecha = fecha;
     }
 
-    public Integer getDuracion() {
+    public int getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(Integer duracion) {
+    public void setDuracion(int duracion) {
         this.duracion = duracion;
     }
 
@@ -35,5 +36,13 @@ public class Sesion_EntrenamientoDTO {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Long getId_plan_entrenamiento() {
+        return id_plan_entrenamiento;
+    }
+
+    public void setId_plan_entrenamiento(Long id_plan_entrenamiento) {
+        this.id_plan_entrenamiento = id_plan_entrenamiento;
     }
 }
