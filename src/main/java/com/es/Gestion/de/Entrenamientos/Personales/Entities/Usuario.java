@@ -12,7 +12,7 @@ public class Usuario {
     private Long id;
 
     @Column(name = "nombre", nullable = false)
-    private String nombre;
+    private String username;
 
     @Column(name = "contrasena", nullable = false)
     private String contrasena;
@@ -30,7 +30,7 @@ public class Usuario {
 
     public Usuario(Long id, String nombre, String contrasena, String correo, String rol, Date fecha_creacion) {
         this.id = id;
-        this.nombre = nombre;
+        this.username = nombre;
         this.contrasena = contrasena;
         this.correo = correo;
         this.rol = rol;
@@ -38,7 +38,7 @@ public class Usuario {
     }
 
     public Usuario(String nombre, String contrasena, String rol) {
-        this.nombre = nombre;
+        this.username = nombre;
         this.contrasena = contrasena;
         this.rol = rol;
     }
@@ -52,11 +52,11 @@ public class Usuario {
     }
 
     public String getNombre() {
-        return nombre;
+        return username;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.username = nombre;
     }
 
     public String getContrasena() {

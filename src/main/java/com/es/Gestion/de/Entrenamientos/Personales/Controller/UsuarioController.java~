@@ -22,9 +22,6 @@ public class UsuarioController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private TokenService tokenService;
-
-    @Autowired
     private UsuarioService usuarioService;
 
     @Autowired
@@ -38,7 +35,7 @@ public class UsuarioController {
                             usuarioLoginDTO.getNombre(), usuarioLoginDTO.getContrasena())
             );
 
-            String token = tokenService.generateToken(authentication);
+            String token = TokenService.generateToken(authentication);
 
             return ResponseEntity.ok(token);
         } catch (BadCredentialsException e) {

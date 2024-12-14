@@ -26,8 +26,8 @@ public class Sesion_Entrenamiento {
 
     public Sesion_Entrenamiento() {}
 
-    public Sesion_Entrenamiento(Date fecha_sesion, int duracion, String descripcion) {
-        this.fecha = fecha_sesion;
+    public Sesion_Entrenamiento(Date fecha, int duracion, String descripcion) {
+        this.fecha = fecha;
         this.duracion = duracion;
         this.descripcion = descripcion;
     }
@@ -40,12 +40,12 @@ public class Sesion_Entrenamiento {
         this.id = id;
     }
 
-    public Date getFecha_sesion() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha_sesion(Date fecha_sesion) {
-        this.fecha = fecha_sesion;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public int getDuracion() {

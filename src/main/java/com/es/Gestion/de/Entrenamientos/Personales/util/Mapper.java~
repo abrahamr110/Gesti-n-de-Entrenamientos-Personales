@@ -21,7 +21,7 @@ public class Mapper {
     }
 
     public static Sesion_EntrenamientoDTO toDTOSesion(Sesion_Entrenamiento sesion) {
-        return new Sesion_EntrenamientoDTO(sesion.getFecha(), sesion.getDuracion(), sesion.getDescripcion());
+        return new Sesion_EntrenamientoDTO(sesion.getFecha_sesion(), sesion.getDuracion(), sesion.getDescripcion());
     }
 
     public static ProgresoDTO toDTOProgreso(Progreso progreso) {
