@@ -3,15 +3,15 @@ package com.es.Gestion.de.Entrenamientos.Personales.Service;
 import com.es.Gestion.de.Entrenamientos.Personales.DTO.Sesion_EntrenamientoDTO;
 import com.es.Gestion.de.Entrenamientos.Personales.Entities.Sesion_Entrenamiento;
 import com.es.Gestion.de.Entrenamientos.Personales.util.Mapper;
-import com.es.Gestion.de.Entrenamientos.Personales.util.Sesion_EntrenamientoValidacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.es.Gestion.de.Entrenamientos.Personales.Repository.Sesion_EntrenamientoRepository;
+
 import java.util.List;
-
-
 @Service
 public class Sesion_EntrenamientoService {
+
     @Autowired
     private Sesion_EntrenamientoRepository sesionRepository;
 

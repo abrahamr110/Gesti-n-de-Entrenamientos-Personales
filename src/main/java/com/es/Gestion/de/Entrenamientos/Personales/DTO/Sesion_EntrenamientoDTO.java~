@@ -1,4 +1,0 @@
-package com.es.Gestion.de.Entrenamientos.Personales.DTO;
-
-public class Sesion_EntrenamientoDTO {
-}

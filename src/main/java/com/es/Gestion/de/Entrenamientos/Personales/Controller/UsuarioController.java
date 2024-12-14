@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController()
 @RequestMapping("/usuarios")
 public class UsuarioController {
-
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -42,12 +41,20 @@ public class UsuarioController {
             return ResponseEntity.ok(usuarioService.registerUser(usuarioRegisterDTO));
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }catch (Exception ex){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
     @GetMapping("/")
     public ResponseEntity<UsuarioDTO> getAll() {
-        return ResponseEntity.ok(usuarioService.getAll());
+        try{
+            return ResponseEntity.ok(usuarioService.getAll());
+        }catch (IllegalArgumentException ex){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }catch (Exception ex){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
     @GetMapping("/{id}")
@@ -62,13 +69,23 @@ public class UsuarioController {
 
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioDTO> updateUser(@PathVariable Long id, @RequestBody UsuarioDTO user) {
-        return ResponseEntity.ok(usuarioService.updateUser(id, user));
+        try{
+            return ResponseEntity.ok(usuarioService.updateUser(id, user));
+        }catch (IllegalArgumentException ex){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }catch (Exception ex){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        usuarioService.deleteUser(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<UsuarioDTO> deleteUser(@PathVariable Long id) {
+        try {
+            usuarioService.deleteUser(id);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 }
 

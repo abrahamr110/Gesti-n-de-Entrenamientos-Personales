@@ -59,13 +59,7 @@ public class Plan_EntrenamientoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePlan(@PathVariable Long id) {
-       try {
-           plan_entrenamientoService.deletePlan(id);
-           return ResponseEntity.noContent().build();
-       }catch (IllegalArgumentException ex){
-           return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-       }catch (Exception ex){
-           return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-       }
+        plan_entrenamientoService.deletePlan(id);
+        return ResponseEntity.noContent().build();
     }
 }

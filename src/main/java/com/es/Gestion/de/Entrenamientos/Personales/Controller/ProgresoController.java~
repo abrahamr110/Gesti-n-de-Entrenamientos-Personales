@@ -49,9 +49,9 @@ public class ProgresoController {
             ProgresoDTO newProgreso = progresoService.addProgreso(progreso);
             return ResponseEntity.status(HttpStatus.CREATED).body(newProgreso);
         } catch (IllegalArgumentException ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear el progreso.");
         }
     }
 
@@ -61,9 +61,9 @@ public class ProgresoController {
             ProgresoDTO updatedProgreso = progresoService.updateProgreso(id, progreso);
             return ResponseEntity.ok(updatedProgreso);
         } catch (IllegalArgumentException ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el progreso.");
         }
     }
 
@@ -73,9 +73,9 @@ public class ProgresoController {
             progresoService.deleteProgreso(id);
             return ResponseEntity.noContent().build();
         } catch (IllegalArgumentException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al eliminar el progreso.");
         }
     }
 }

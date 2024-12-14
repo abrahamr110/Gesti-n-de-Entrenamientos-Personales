@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class Sesion_EntrenamientoDTO {
     private Date fecha;
-    private int duracion;
+    private Integer duracion;
     private String descripcion;
 
-    public Sesion_EntrenamientoDTO(Date fecha, int duracion, String descripcion) {
+    public Sesion_EntrenamientoDTO(Date fecha, Integer duracion, String descripcion) {
         this.fecha = fecha;
         this.duracion = duracion;
         this.descripcion = descripcion;
@@ -21,11 +21,11 @@ public class Sesion_EntrenamientoDTO {
         this.fecha = fecha;
     }
 
-    public int getDuracion() {
+    public Integer getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(int duracion) {
+    public void setDuracion(Integer duracion) {
         this.duracion = duracion;
     }
 
