@@ -1,6 +1,8 @@
 package com.es.Gestion.de.Entrenamientos.Personales.Service;
 
+import com.es.Gestion.de.Entrenamientos.Personales.DTO.Plan_EntrenamientoDTO;
 import com.es.Gestion.de.Entrenamientos.Personales.DTO.ProgresoDTO;
+import com.es.Gestion.de.Entrenamientos.Personales.Entities.Plan_Entrenamiento;
 import com.es.Gestion.de.Entrenamientos.Personales.Entities.Progreso;
 import com.es.Gestion.de.Entrenamientos.Personales.Entities.Sesion_Entrenamiento;
 import com.es.Gestion.de.Entrenamientos.Personales.Entities.Usuario;
@@ -52,40 +54,73 @@ public class ProgresoService {
     public ProgresoDTO addProgreso(ProgresoDTO progresoDTO) {
         progresoValidacion.validateAddProgreso(progresoDTO);
 
-        Usuario cliente = usuarioRepository.findById(progresoDTO.getId_cliente())
-                .orElseThrow(() -> new IllegalArgumentException("El cliente con ID " + progresoDTO.getId_cliente() + " no existe."));
+        Progreso progreso = new Progreso();
+        progreso.setPeso(progresoDTO.getPeso());
+        progreso.setRepiticiones(progresoDTO.getRepeticiones());
+        progreso.setCalorias(progresoDTO.getCalorias());
+        progreso.setObservaciones(progresoDTO.getObservaciones());
 
-        Sesion_Entrenamiento sesion = sesionRepository.findById(progresoDTO.getId_sesion())
-                .orElseThrow(() -> new IllegalArgumentException("La sesión de entrenamiento con ID " + progresoDTO.getId_sesion() + " no existe."));
+        if (progresoDTO.getId_sesion() != null) {
+            Sesion_Entrenamiento sesion = sesionRepository.findById(progresoDTO.getId_sesion())
+                    .orElseThrow(() -> new IllegalArgumentException("La sesión con ID " + progresoDTO.getId_sesion() + " no existe."));
+            progreso.setId_sesion(sesion);
+        } else {
+            throw new IllegalArgumentException("El ID de la sesión no puede ser nulo.");
+        }
 
-        Progreso progreso = new Progreso(
-                progresoDTO.getPeso(),
-                progresoDTO.getRepeticiones(),
-                progresoDTO.getCalorias(),
-                progresoDTO.getObservaciones(),
-                sesion,
-                cliente
-        );
+        if (progresoDTO.getId_cliente() != null) {
+            Usuario cliente = usuarioRepository.findById(progresoDTO.getId_cliente())
+                    .orElseThrow(() -> new IllegalArgumentException("El cliente con ID " + progresoDTO.getId_cliente() + " no existe."));
+            progreso.setId_cliente(cliente);
+        } else {
+            throw new IllegalArgumentException("El ID del cliente no puede ser nulo.");
+        }
 
         Progreso savedProgreso = progresoRepository.save(progreso);
 
         return Mapper.toDTOProgreso(savedProgreso);
     }
 
-    public ProgresoDTO updateProgreso(Long id, Progreso progreso) {
-        progresoValidacion.validateUpdateProgreso(id, Mapper.toDTOProgreso(progreso));
+
+    public ProgresoDTO updateProgreso(Long id, ProgresoDTO progresoDTO) {
+        progresoValidacion.validateUpdateProgreso(id, progresoDTO);
 
         Progreso existingProgreso = progresoRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("No se encontró un progreso con el ID proporcionado."));
+                .orElseThrow(() -> new IllegalArgumentException("Progreso no encontrado para el ID: " + id));
 
-        existingProgreso.setPeso(progreso.getPeso());
-        existingProgreso.setRepiticiones(progreso.getRepiticiones());
-        existingProgreso.setCalorias(progreso.getCalorias());
-        existingProgreso.setObservaciones(progreso.getObservaciones());
+        if (progresoDTO.getPeso() != null) {
+            existingProgreso.setPeso(progresoDTO.getPeso());
+        }
 
-        progresoRepository.save(existingProgreso);
-        return Mapper.toDTOProgreso(existingProgreso);
+        if (progresoDTO.getRepeticiones() > 0) {
+            existingProgreso.setRepiticiones(progresoDTO.getRepeticiones());
+        }
+
+        if (progresoDTO.getCalorias() != null) {
+            existingProgreso.setCalorias(progresoDTO.getCalorias());
+        }
+
+        if (progresoDTO.getObservaciones() != null) {
+            existingProgreso.setObservaciones(progresoDTO.getObservaciones());
+        }
+
+        if (progresoDTO.getId_sesion() != null) {
+            Sesion_Entrenamiento sesion = sesionRepository.findById(progresoDTO.getId_sesion())
+                    .orElseThrow(() -> new IllegalArgumentException("La sesión con ID " + progresoDTO.getId_sesion() + " no existe."));
+            existingProgreso.setId_sesion(sesion);
+        }
+
+        if (progresoDTO.getId_cliente() != null) {
+            Usuario cliente = usuarioRepository.findById(progresoDTO.getId_cliente())
+                    .orElseThrow(() -> new IllegalArgumentException("El cliente con ID " + progresoDTO.getId_cliente() + " no existe."));
+            existingProgreso.setId_cliente(cliente);
+        }
+
+        Progreso updatedProgreso = progresoRepository.save(existingProgreso);
+        
+        return Mapper.toDTOProgreso(updatedProgreso);
     }
+
 
     public void deleteProgreso(Long id) {
         progresoValidacion.validateDeleteProgreso(id);

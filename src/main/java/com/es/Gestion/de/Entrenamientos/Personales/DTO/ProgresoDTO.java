@@ -8,16 +8,14 @@ public class ProgresoDTO {
     private int repeticiones;
     private Double calorias;
     private String observaciones;
-    private Usuario id_cliente;
-    private Sesion_Entrenamiento id_sesion;
+    private Long id_cliente;
+    private Long id_sesion;
 
-    public ProgresoDTO(Double peso, int repeticiones, Double calorias, String observaciones,Usuario id_cliente, Sesion_Entrenamiento id_sesion) {
+    public ProgresoDTO(Double peso, int repeticiones, Double calorias, String observaciones) {
         this.peso = peso;
         this.repeticiones = repeticiones;
         this.calorias = calorias;
         this.observaciones = observaciones;
-        this.id_cliente = id_cliente;
-        this.id_sesion = id_sesion;
     }
 
     public Double getPeso() {
@@ -52,16 +50,16 @@ public class ProgresoDTO {
         this.observaciones = observaciones;
     }
 
-    public Usuario getId_cliente() {
+    public Long getId_cliente() {
         return id_cliente;
     }
-    public void setId_cliente(Usuario id_cliente) {
+    public void setId_cliente(Long id_cliente) {
         this.id_cliente = id_cliente;
     }
-    public Sesion_Entrenamiento getId_sesion() {
+    public Long getId_sesion() {
         return id_sesion;
     }
-    public void setId_sesion(Sesion_Entrenamiento id_sesion) {
+    public void setId_sesion(Long id_sesion) {
         this.id_sesion = id_sesion;
     }
 }

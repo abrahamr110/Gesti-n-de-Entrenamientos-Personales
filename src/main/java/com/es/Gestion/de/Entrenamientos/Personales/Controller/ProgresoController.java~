@@ -49,7 +49,7 @@ public class ProgresoController {
     @PostMapping("/")
     public ResponseEntity<ProgresoDTO> addProgreso(@RequestBody ProgresoDTO progresoDTO) {
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(progresoService.addProgreso(progresoDTO));
+            return ResponseEntity.status(HttpStatus.CREATED).body(progresoService.addProgreso(progresoDTO););
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } catch (Exception ex) {
